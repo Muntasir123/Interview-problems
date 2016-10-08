@@ -1,0 +1,31 @@
+/*
+
+reverse a string with recursion
+
+ */
+package ch13;
+public class SentenceOne
+{
+    public static void main (String [] args)
+    {
+        String thisWord = "This is a string";
+        Logic thisLog = new Logic();
+        System.out.println(thisLog.reverseDat(thisWord));
+    }
+}
+
+class Logic
+{
+    private String aString;
+
+
+    String reverseDat(String aString)
+    {
+        if (aString.length() <= 1)
+        {
+            return aString;
+        }
+
+        return reverseDat(aString.substring(1)) + aString.charAt(0);
+    }
+}

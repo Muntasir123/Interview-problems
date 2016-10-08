@@ -1,0 +1,52 @@
+/**
+ * Test whether a sentence is a palindrome
+ * A man, a plan, a canal-Panama!
+ * Go hang a salami,I'm a lasagna hog
+ */
+public class Sentence
+{
+    public static void main(String [] args)
+    {
+        Palindrome isPali = new Palindrome("Madam, Im Adam");
+        isPali.isPalindrome();
+    }
+}
+
+
+class Palindrome
+{
+    private String text;
+    public Palindrome(String text)
+    {
+        this.text = text;
+    }
+
+    public boolean isPalindrome() {
+        char start = Character.toLowerCase(text.charAt(0));
+        char end = Character.toLowerCase(text.charAt(text.length() - 1));
+
+        if (Character.isLetter(start) && Character.isLetter(end))
+        {
+            if(start == end)
+            {
+                Palindrome smallerPali = new Palindrome(text.substring(1,text.length()-1));
+                return smallerPali.isPalindrome();
+            }
+            else{
+                return false;
+            }
+        }
+
+        else if(!Character.isLetter(text.length()-1))
+        {
+            Palindrome shorter = new Palindrome(text.substring(0,text.length()-1));
+            return shorter.isPalindrome();
+        }
+
+        else{
+            Palindrome shorter = new Palindrome(text.substring(1,text.length()-1));
+            return shorter.isPalindrome();
+        }
+
+    }
+}

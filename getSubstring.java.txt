@@ -1,0 +1,54 @@
+package ch13;
+// Write some code to get substrings of word "rum" - > r, ru, rum, u , um ,m , " "
+public class SentenceOne
+{
+    public static void main(String [] args)
+    {
+        getPerms sub = new getPerms("rum");
+        while(sub.hasMorePerms())
+        {
+            System.out.println(sub.getPerm());
+        }
+    }
+}
+
+class getPerms
+{
+    private int count;
+    private String word;
+    getPerms behindPerm;
+
+    public getPerms(String word)
+    {
+        count = 0;
+        this.word = word;
+        if (word.length() > 0)
+        {
+            behindPerm = new getPerms(word.substring(1));
+        }
+    }
+
+    public String getPerm()
+    {
+        count++;
+        if (word.length() == 0)
+        {
+            return "";
+        }
+
+        if (count <= word.length())
+        {
+            return word.substring(0,count);
+        }
+        else{
+            return behindPerm.getPerm();
+        }
+
+    }
+
+    boolean hasMorePerms() {
+        return count <= word.length() || behindPerm != null && behindPerm.hasMorePerms();
+    }
+
+}
+
